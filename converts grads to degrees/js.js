@@ -1,22 +1,22 @@
-//Write a JS function that calculates the distance between the two points in 3D by given coordinates.
-//The input comes as an array of strings that need to be parsed as numbers. The first three elements are the x, y and z
-//coordinates for the first point and the second set of arguments are the coordinates of the other point.
+//Land surveyors use grads (also known as gon, 400 grads in a full turn) in their documents. Grads are rather unwieldy
+//though, so you need to write a JS function that converts from grads to degrees. In addition, your program needs to
+//constrain the results within the range , so if you arrive at a value like -15°, it needs to be converted to 345° and 420°
+//becomes 60°.
+//The input comes as an array of one string element that needs to be parsed as a number.
 //The output should be printed to the console.
 
 function name(array) {
-   let boss = array.map(Number);
-   let x1 = boss[0];
-   let y1   = boss[1];
-   let z1 = boss[2];
-    let x2 = boss[3];
-    let y2   = boss[4];
-    let z2 = boss[5];
+   let gradi = Number(array[0]);
+   let gradus = 0;
+   gradi = gradi % 400;
 
-    let distance2 = Math.sqrt(Math.pow(x2 - x1,2) +Math.pow(y2-y1,2)+Math.pow(z2-z1,2));
-   console.log(distance2);
-
-
-
+    if(gradi < 400 && gradi > 0){
+        gradus = gradi * 0.9;
+    }else if(gradi < 0) {
+        gradus = (gradi + 400)  * 0.9;
+        Math.abs(gradus);
+    }
+    console.log(gradus);
 }
 
-name(['3.5','0','1','0','2','-1']);
+name(['500']);
