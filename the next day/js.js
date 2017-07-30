@@ -1,11 +1,9 @@
-function date(array) {
-   let year = Number(array[0]);
-    let month = Number(array[1]);
-    let day = Number(array[2]);
+function calcNextDay(year, month, day) {
+    let date = new Date(year, month-1, day);
+    let oneDay = 24 * 60 * 60 * 1000;
+    let nextDate = new Date(date.getTime() + oneDay);
 
-    let nextDay = new Date(year,month,day + 1);
-
-    console.log(nextDay);
+    return nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + '-' + nextDate.getDate();
 }
 
-date(['2016','9','31']);
+calcNextDay(2016, 9, 30);
