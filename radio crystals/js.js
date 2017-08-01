@@ -43,20 +43,21 @@ function printTriangle(array) {
 
     for (let i = 1; i < array.length; i++) {
         console.log('Processing chunk ' + array[i] +' microns');
+        let test = array[i];
         if(array[i] / 4 >= debelina ) {
-            cut();
+            cut(test);
         }
 
         if(array[i] * 0.8 >= debelina){
-            lap();
+            lap(test);
         }
 
         if(array[i] - 20 >= debelina) {
-            grind();
+            grind(test);
         }
 
         if(array[i] >= debelina) {
-            etch();
+            etch(test);
         }
 
         if(array[i] + 1 === debelina) {
@@ -64,60 +65,56 @@ function printTriangle(array) {
             console.log('X-ray x1');
         }
 
-        function cut() {
+        function cut(test) {
             cutInt++;
-            array[i] /=  4;
-            if(array[i] / 4 >= debelina ) {
+            test /=  4;
+            if(test / 4 >= debelina ) {
                 cut();
             }else {
-                Math.floor(array[i]);
+                Math.floor(test);
                 console.log(`Cut x${cutInt}`);
-                //console.log(array[i]);
                 console.log('Transporting and washing');
             }
         }
 
-        function lap() {
+        function lap(test) {
             lapInt++;
-            array[i] = array[i] * 0.8;
-            if(array[i] - (array[i] * 0.2) >= debelina) {
+            test = test * 0.8;
+            if(test - (test * 0.2) >= debelina) {
                 lap();
             }else {
-                Math.floor(array[i]);
+                Math.floor(test);
                 console.log(`Lap x${lapInt}`);
-                //console.log(array[i]);
                 console.log('Transporting and washing');
             }
         }
 
-        function grind() {
+        function grind(test) {
             grindInt++;
-            array[i] -= 20;
-            if(array[i] - 20 >= debelina) {
+            test -= 20;
+            if(test - 20 >= debelina) {
                 grind();
             }else {
-                Math.floor(array[i]);
+                Math.floor(test);
                 console.log(`Grind x${grindInt}`);
-                //console.log(array[i]);
-                console.log('Transporting and washing');
-            }
-        }
-
-        function etch() {
-            etchInt++;
-            array[i] -= 2;
-
-            if(array[i] >= debelina) {
-                etch();
-            }else {
-                Math.floor(array[i]);
-                console.log(`Etch x${etchInt}`);
-                //console.log(array[i]);
                 console.log('Transporting and washing');
             }
         }
 
         console.log(`Finished crystal ${debelina} microns`);
+    }
+
+    function etch(test) {
+        etchInt++;
+        test -= 2;
+
+        if(test >= debelina) {
+            etch();
+        }else {
+            Math.floor(test);
+            console.log(`Etch x${etchInt}`);
+            console.log('Transporting and washing');
+        }
     }
 }
 
